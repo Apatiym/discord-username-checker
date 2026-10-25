@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ruff
+        run: python -m pip install --disable-pip-version-check ruff
+
+      - name: Lint
+        run: ruff check --output-format=github .
+
+  test:
+    name: test / ${{ matrix.os }} / py${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.9", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Byte-compile every module
+        run: python -m py_compile ds_username.py net.py ui.py creds.py
+
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+
+  docs:
+    name: docs links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check that every relative link in the READMEs exists
+        shell: python
+        run: |
+          import pathlib
+          import re
+          import sys
+
+          root = pathlib.Path(".")
+          broken = []
+          pattern = re.compile(r'(?:\]\(|src=")([^)"#][^)"]*)')
+          for readme in ("README.md", "README.ru.md"):
+              text = (root / readme).read_text(encoding="utf-8")
+              for target in pattern.findall(text):
+                  if target.startswith(("http://", "https://", "mailto:")):
+                      continue
+                  path = target.split("#", 1)[0]
+                  if path and not (root / path).exists():
+                      broken.append(f"{readme}: {target}")
+          if broken:
+              print("\n".join(broken))
+              sys.exit(1)
+          print("all relative links resolve")

@@ -1,0 +1,38 @@
+# Project metadata for tooling (ruff, editors, Dependabot).
+# This is a script collection, not an installable package: there is no build-system on
+# purpose, and there are no runtime dependencies.
+
+[project]
+name = "discord-username-checker"
+version = "1.0.0"
+description = "Console tool that checks short Discord usernames: taken in red, free in green, rate-limit aware."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Apatiym", url = "https://github.com/Apatiym" }]
+keywords = ["discord", "username", "console", "rate-limit", "ansi", "sing-box"]
+classifiers = [
+  "Environment :: Console",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: Microsoft :: Windows",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Utilities",
+]
+dependencies = []
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+extend-exclude = ["tests/__pycache__"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]
+ignore = [
+  "E501",  # long lines are handled by the formatter, not the linter
+  "E731",  # small lambdas are used deliberately in the colour helpers
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"

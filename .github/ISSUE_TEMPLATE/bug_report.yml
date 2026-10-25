@@ -1,0 +1,74 @@
+name: Bug report
+description: Something behaves differently than documented
+title: "bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. **Do not paste your Discord token or `config.json`** —
+        they grant full access to your account. If you already did, change your Discord
+        password immediately.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What did you expect, and what did you get instead?
+      placeholder: I expected the scan to continue on the next node, but it stopped.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: The smaller the repro, the faster the fix.
+      placeholder: |
+        1. settings -> vpn -> enable, size 12
+        2. find short names, length 4
+        3. after ~40 checks the run stops
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - menu / UI / colours
+        - scanning / rate limits
+        - token detection
+        - Discord path detection
+        - VPN pool
+        - nick change
+        - other
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Release tag, or the output of `git rev-parse --short HEAD`.
+      placeholder: v1.0.0 / 6bdc961
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Windows version, Python version, terminal (cmd / Windows Terminal).
+      placeholder: Windows 11 24H2, Python 3.12.7, cmd
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Output
+      description: Paste the console output. Remove your nickname and token first.
+      render: text
+    validations:
+      required: false

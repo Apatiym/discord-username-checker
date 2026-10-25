@@ -1,8 +1,25 @@
-__pycache__/
-*.py[cod]
-
-# local state: never publish these
+# ---- local state: never publish ----
 config.json
 vpns.json
 .vpn/
 *.tmp
+
+# ---- python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# ---- tooling caches ----
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+
+# ---- editors and OS ----
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini

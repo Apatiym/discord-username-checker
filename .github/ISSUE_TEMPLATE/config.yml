@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security report
+    url: https://github.com/Apatiym/discord-username-checker/security/advisories/new
+    about: Please report vulnerabilities privately, not as a public issue.
+  - name: Questions and ideas
+    url: https://github.com/Apatiym/discord-username-checker/discussions
+    about: Ask how something works or discuss an idea before opening an issue.

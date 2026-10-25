@@ -16,7 +16,6 @@ import ctypes
 import json
 import os
 import re
-from ctypes import wintypes
 
 DPAPI_PREFIX = b"DPAPI"
 ENC_RE = re.compile(rb"dQw4w9WgXcQ:([A-Za-z0-9+/=]{40,})")
@@ -152,20 +151,29 @@ def gcm_decrypt(key, blob, aad=b""):
 
 # ---------------- DPAPI ----------------
 
-class _BLOB(ctypes.Structure):
-    _fields_ = [("cbData", wintypes.DWORD), ("pbData", ctypes.POINTER(ctypes.c_char))]
+def _blob_type():
+    """The DATA_BLOB struct, built lazily: ctypes.wintypes is Windows-only,
+    and this module has to stay importable on any platform (CI, tests)."""
+    from ctypes import wintypes
+
+    class _BLOB(ctypes.Structure):
+        _fields_ = [("cbData", wintypes.DWORD),
+                    ("pbData", ctypes.POINTER(ctypes.c_char))]
+
+    return _BLOB
 
 
 def dpapi_unprotect(data):
     """Decrypts data protected by Windows DPAPI for the current user."""
     if os.name != "nt":
         raise OSError("DPAPI is Windows-only")
+    blob_type = _blob_type()
     crypt32 = ctypes.WinDLL("crypt32", use_last_error=True)
     kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
 
     buf = ctypes.create_string_buffer(data, len(data))
-    blob_in = _BLOB(len(data), ctypes.cast(buf, ctypes.POINTER(ctypes.c_char)))
-    blob_out = _BLOB()
+    blob_in = blob_type(len(data), ctypes.cast(buf, ctypes.POINTER(ctypes.c_char)))
+    blob_out = blob_type()
 
     ok = crypt32.CryptUnprotectData(
         ctypes.byref(blob_in), None, None, None, None, 0, ctypes.byref(blob_out)
@@ -201,7 +209,6 @@ def data_dirs(hint=None):
     """Client data folders (stable / PTB / Canary and anything similar)."""
     out = []
     roaming = os.environ.get("APPDATA", "")
-    local = os.environ.get("LOCALAPPDATA", "")
 
     if hint:
         # an install folder (...\AppData\Local\Discord) has no leveldb; the data

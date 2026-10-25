@@ -1,0 +1,46 @@
+name: Feature request
+description: Suggest an improvement
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This project deliberately has **no dependencies** and stays a small set of
+        four modules. Ideas that respect both are much more likely to land.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What is annoying or missing today? Describe the situation, not the solution.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should happen instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Workarounds you already tried, or other designs you rejected.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: constraints
+    attributes:
+      label: Constraints
+      options:
+        - label: It can be implemented with the standard library only
+          required: false
+        - label: It does not require storing more personal data
+          required: false
+        - label: I am willing to open a pull request
+          required: false
