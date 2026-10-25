@@ -1,0 +1,14 @@
+# Name list for menu option 3.
+# One name per line. Empty lines, @, spaces and duplicates are dropped.
+# Replace these with your own candidates.
+
+void
+nyx
+kae
+zeph
+lume
+orbi
+quill
+vex
+moth
+rift
