@@ -6,7 +6,7 @@
 Цветные результаты, контроль лимитов, опциональный пул IP — без сторонних пакетов.
 
 [![CI](https://github.com/Apatiym/discord-username-checker/actions/workflows/ci.yml/badge.svg)](https://github.com/Apatiym/discord-username-checker/actions/workflows/ci.yml)
-[![Python](https://img.shields.io/badge/python-3.9%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2B-0078D6?logo=windows&logoColor=white)](#требования)
 [![License](https://img.shields.io/badge/license-MIT-2ea44f)](LICENSE)
 [![Dependencies](https://img.shields.io/badge/dependencies-none-success)](#требования)
@@ -59,7 +59,7 @@
 | | |
 |---|---|
 | ОС | Windows 10 или новее — извлечение токена использует DPAPI |
-| Python | 3.9+ (проверено на 3.12), только стандартная библиотека |
+| Python | 3.10+ (проверено на 3.12), только стандартная библиотека |
 | Опционально | [`sing-box`](https://sing-box.sagernet.org/) для VPN-пула — идёт в комплекте с клиентом Happ |
 
 Linux и macOS не поддерживаются для шага с токеном; модули там импортируются, и

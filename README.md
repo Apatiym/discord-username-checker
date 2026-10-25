@@ -6,7 +6,7 @@
 Colour-coded results, rate-limit pacing, optional multi-IP pool — no third-party packages.
 
 [![CI](https://github.com/Apatiym/discord-username-checker/actions/workflows/ci.yml/badge.svg)](https://github.com/Apatiym/discord-username-checker/actions/workflows/ci.yml)
-[![Python](https://img.shields.io/badge/python-3.9%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2B-0078D6?logo=windows&logoColor=white)](#requirements)
 [![License](https://img.shields.io/badge/license-MIT-2ea44f)](LICENSE)
 [![Dependencies](https://img.shields.io/badge/dependencies-none-success)](#requirements)
@@ -59,7 +59,7 @@ It was built around three constraints that most scripts ignore:
 | | |
 |---|---|
 | OS | Windows 10 or newer — token extraction uses DPAPI |
-| Python | 3.9+ (tested on 3.12), standard library only |
+| Python | 3.10+ (tested on 3.12), standard library only |
 | Optional | [`sing-box`](https://sing-box.sagernet.org/) for the VPN pool — it ships with the Happ client |
 
 Linux and macOS are not supported for the token step; the modules still import and the

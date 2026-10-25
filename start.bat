@@ -8,6 +8,8 @@ if exist "%LOCALAPPDATA%\Programs\Python\Python312\python.exe" set "PY=%LOCALAPP
 if defined PY goto run
 if exist "%LOCALAPPDATA%\Programs\Python\Python311\python.exe" set "PY=%LOCALAPPDATA%\Programs\Python\Python311\python.exe"
 if defined PY goto run
+if exist "%LOCALAPPDATA%\Programs\Python\Python310\python.exe" set "PY=%LOCALAPPDATA%\Programs\Python\Python310\python.exe"
+if defined PY goto run
 where py >nul 2>nul
 if not errorlevel 1 set "PY=py -3"
 if defined PY goto run

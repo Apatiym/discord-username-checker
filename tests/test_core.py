@@ -278,6 +278,7 @@ class PathTests(Base):
         data = self.make_client_dir("discord")
         self.assertEqual(ds.normalize_path(f'"{data}"'), data)
 
+    @unittest.skipUnless(os.name == "nt", "%VAR% expansion is a Windows feature")
     def test_normalize_expands_variables(self):
         data = self.make_client_dir("discord")
         with mock.patch.dict(os.environ, {"APPDATA": self.tmp}):

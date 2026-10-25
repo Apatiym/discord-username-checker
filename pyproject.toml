@@ -7,7 +7,7 @@ name = "discord-username-checker"
 version = "1.0.0"
 description = "Console tool that checks short Discord usernames: taken in red, free in green, rate-limit aware."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [{ name = "Apatiym", url = "https://github.com/Apatiym" }]
 keywords = ["discord", "username", "console", "rate-limit", "ansi", "sing-box"]
@@ -17,13 +17,17 @@ classifiers = [
   "Operating System :: Microsoft :: Windows",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Topic :: Utilities",
 ]
 dependencies = []
 
 [tool.ruff]
 line-length = 100
-target-version = "py39"
+target-version = "py310"
 extend-exclude = ["tests/__pycache__"]
 
 [tool.ruff.lint]
